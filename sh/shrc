@@ -1,0 +1,12 @@
+LSCOLORS='gxfxbEaEBxxEhEhBaDaCaD'
+#alias
+alias d='cd ~/Downloads/'
+alias vi='mvim'
+
+alias bi='brew install'
+alias bs='brew search'
+alias bui='brew uninstall'
+alias bl='brew list'
+
+alias l-ouba-api='ssh -p 2208 root@api.obar.com.cn'
+alias l-ouba-android='ssh -p 2208 root@114.111.160.187'
