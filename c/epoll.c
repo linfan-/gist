@@ -34,7 +34,7 @@ int main(int argc, char **argv)
 {
     struct epoll_event ev, events[MAX_EVENTS];
     struct sockaddr_in local, remote;
-    int addrlen, listenfd, conn_sock, nfds, epfd;
+    int addrlen, listenfd, conn_sock, nfds, epfd,fd;
     int  i, nread, n;
     char buf[BUFSIZ];
 
@@ -66,7 +66,7 @@ int main(int argc, char **argv)
     ev.events = EPOLLIN;
     ev.data.fd = listenfd;
 
-    if (epoll_ctl(epfd, EPOLL_CTL_ADD, listenfd, &ev == -1) {
+    if (epoll_ctl(epfd, EPOLL_CTL_ADD, listenfd, &ev) == -1) {
         perror("epoll_ctl:listen sock");
         exit(1);
     }
