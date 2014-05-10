@@ -1,3 +1,6 @@
+export LC_ALL=en_US.UTF-8  
+export LANG=en_US.UTF-8
+
 LSCOLORS='gxfxbEaEBxxEhEhBaDaCaD'
 #alias
 alias d='cd ~/Downloads/'
@@ -10,3 +13,7 @@ alias bl='brew list'
 
 alias l-ouba-api='ssh -p 2208 root@api.obar.com.cn'
 alias l-ouba-android='ssh -p 2208 root@114.111.160.187'
+
+alias l-relay00='ssh huyunting@relay00.baidu.com'
+
+
