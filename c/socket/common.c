@@ -48,7 +48,7 @@ ssize_t writen(int fd, void *buf, size_t n)
     ssize_t already_write =0 , nwrite;
     char *buf_start = buf;
 
-    while (already_write) {
+    while (already_write != n) {
         nwrite = write(fd, buf_start, n-already_write);
         if (-1 == nwrite) {
             if (EINTR == errno)

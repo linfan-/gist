@@ -1,5 +1,27 @@
 #include "common.h"
 
+int str_cli(int sfd)
+{
+    char send_buf[BUFFERSIZE], recv_buf[BUFFERSIZE];
+    int n;
+    while (NULL != fgets(send_buf, BUFFERSIZE, stdin)) {
+        if ( -1 == writen(sfd, send_buf, strlen(send_buf)))
+            sys_exit("write error");
+        printf("client finish write\n");
+        n = readn(sfd, recv_buf, strlen(send_buf));
+        if (-1 == n) {
+            sys_exit("read error");
+        } else if (0 == n) {
+            printf("server closed\n");
+            break;
+        }
+        recv_buf[strlen(send_buf)] = '\0';
+        printf("client finish read\n");
+        fputs(recv_buf, stdout);
+    }
+    
+    return 0;
+}
 int main(int argc, char **argv)
 {
     int sfd;
@@ -21,16 +43,8 @@ int main(int argc, char **argv)
     }
 
     printf("connected to server\n");
-    int buf[BUFFERSIZE];
-    int nread;
-    nread = read(sfd, buf, 2);
-    if (-1 == nread) {
-        close(sfd);
-        sys_exit("read error");
-    } else if (0 == nread){
-        close(sfd);
-        printf("been closed\n");
-    }
+    str_cli(sfd);
+    close(sfd);
     return 0;
 }
 

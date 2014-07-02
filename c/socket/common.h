@@ -15,7 +15,8 @@
 #define BACKLOG 10
 #define BUFFERSIZE 1024
 
-
+ssize_t writen(int fd, void *buf, size_t n);
+ssize_t readn(int fd, void *buf, size_t n);
 int print_error_msg(const char *msg);
 void sys_exit(const char *msg);
 #endif
