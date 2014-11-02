@@ -3,17 +3,23 @@ export LANG=en_US.UTF-8
 
 LSCOLORS='gxfxbEaEBxxEhEhBaDaCaD'
 #alias
-alias d='cd ~/Downloads/'
+alias download='cd ~/Downloads/'
 alias vi='mvim'
 
+#brew
 alias bi='brew install'
 alias bs='brew search'
 alias bui='brew uninstall'
 alias bl='brew list'
 
+#ssh
+alias l-ouba-test-api='ssh -p 2208 root@api-test.obar.com.cn'
 alias l-ouba-api='ssh -p 2208 root@api.obar.com.cn'
-alias l-ouba-android='ssh -p 2208 root@114.111.160.187'
+alias l-ouba-android='ssh -p 2208 root@json-linux-test.obar.com.cn'
+alias lb='ssh huyunting@relay00.baidu.com'
+alias lu='ssh linfan@10.211.55.6'
 
-alias l-relay00='ssh huyunting@relay00.baidu.com'
-
-
+alias create-tags='/usr/local/bin/ctags -R'
+alias gproxy='sudo /usr/local/goagent/local/proxy.sh'
+#open file
+alias -s html=vi
