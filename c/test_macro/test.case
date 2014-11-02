@@ -1,0 +1,2 @@
+./main USE_TCMALLOC=yes
+./main USE_JEMALLOC=yes
