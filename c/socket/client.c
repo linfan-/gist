@@ -1,13 +1,27 @@
 #include "common.h"
+#include <signal.h>
+void sig_pipe_handler(int sig_no)
+{
+    printf("catch SIGPIPE signal");
+}
 
 int str_cli(int sfd)
 {
     char send_buf[BUFFERSIZE], recv_buf[BUFFERSIZE];
     int n;
     while (NULL != fgets(send_buf, BUFFERSIZE, stdin)) {
-        if ( -1 == writen(sfd, send_buf, strlen(send_buf)))
+        n = writen(sfd, send_buf, strlen(send_buf));
+        if ( -1 == n) 
             sys_exit("write error");
-        printf("client finish write\n");
+        else if (0 == n)
+            sys_exit("server closed write return 0");
+        printf("client finish write len=%d\n", n);
+        /*
+          test SIGPIPE
+
+        signal(SIGPIPE, sig_pipe_handler);        
+        n = writen(sfd, send_buf, strlen(send_buf));
+        */
         n = readn(sfd, recv_buf, strlen(send_buf));
         if (-1 == n) {
             sys_exit("read error");

@@ -1,5 +1,5 @@
-#ifndef __GLOBAL_H
-#define __GLOBAL_H
+#ifndef __COMMON_H
+#define __COMMON_H
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
