@@ -8,9 +8,14 @@ void sig_pipe_handler(int sig_no)
 int str_cli(int sfd)
 {
     char send_buf[BUFFERSIZE], recv_buf[BUFFERSIZE];
-    int n;
+    int i, n, len;
     while (NULL != fgets(send_buf, BUFFERSIZE, stdin)) {
-        n = writen(sfd, send_buf, strlen(send_buf));
+        len = strlen(send_buf);
+        for (i = len - 1; i >= 1; i--) {
+            send_buf[i] = send_buf[i-1];
+        }
+        send_buf[0] = len - 1;
+        n = writen(sfd, send_buf, len);
         if ( -1 == n) 
             sys_exit("write error");
         else if (0 == n)

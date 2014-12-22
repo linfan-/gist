@@ -7,12 +7,14 @@ int str_echo(int sfd)
     char  recv_buf[BUFFERSIZE];
     int len, ret;
     while ((ret = readn(sfd, recv_buf, 1)) > 0) {
-       len = recv_buf[0] - '0';
+       len = recv_buf[0];
        printf("recv len=%d\n", len);
        if ((ret = readn(sfd, recv_buf+1, len)) <= 0) 
            break;
        
         printf("server finish read\n");
+        sleep(20);
+        printf("server end sleep\n");
         if ((ret = writen(sfd, recv_buf, len+1)) < 0)
             break;
         printf("server finish write ret=%d\n",ret);
@@ -70,12 +72,15 @@ int main(int argc, char **argv)
                 sys_exit("accpet error");
             }
         } 
+        /*
         if (0 == fork()) {
             close(sfd);
             str_echo(connected_fd);
             printf("child process exit\n");
             exit(0);
         }
+        */
+        str_echo(connected_fd);
         printf("client %s:%d has connected to server!\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
         close(connected_fd);
     }
