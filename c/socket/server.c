@@ -4,20 +4,25 @@
 
 int str_echo(int sfd)
 {
+    sleep(10);
     char  recv_buf[BUFFERSIZE];
     int len, ret;
     while ((ret = readn(sfd, recv_buf, 1)) > 0) {
        len = recv_buf[0];
        printf("recv len=%d\n", len);
+       /*        
        if ((ret = readn(sfd, recv_buf+1, len)) <= 0) 
            break;
        
+        
         printf("server finish read\n");
         sleep(20);
         printf("server end sleep\n");
         if ((ret = writen(sfd, recv_buf, len+1)) < 0)
             break;
         printf("server finish write ret=%d\n",ret);
+        */
+       
 
     }
     if (-1 == ret)
@@ -54,7 +59,7 @@ int main(int argc, char **argv)
         sys_exit("bind failed");
     }
 
-    if (-1 == listen(sfd, BACKLOG)) {
+    if (-1 == listen(sfd, /*BACKLOG*/ 1)) {
         close(sfd);
         sys_exit("bind failed");
     }
@@ -63,6 +68,7 @@ int main(int argc, char **argv)
     }
     while (1) {
         printf("listening, waiting for client connection\n");
+        sleep(120);
         if (-1 == (connected_fd = accept(sfd, (struct sockaddr*)&client_addr, &client_socket_len))) {
             if (EINTR == errno) {
                 printf("system call interrupt\n");
@@ -80,9 +86,9 @@ int main(int argc, char **argv)
             exit(0);
         }
         */
-        str_echo(connected_fd);
+        //str_echo(connected_fd);
         printf("client %s:%d has connected to server!\n", inet_ntoa(client_addr.sin_addr), ntohs(client_addr.sin_port));
-        close(connected_fd);
+        //close(connected_fd);
     }
 
     close(sfd);

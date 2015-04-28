@@ -17,9 +17,6 @@ alias l-ouba-test-api='ssh -p 2208 root@api-test.obar.com.cn'
 alias l-ouba-api='ssh -p 2208 root@api.obar.com.cn'
 alias l-ouba-android='ssh -p 2208 root@json-linux-test.obar.com.cn'
 alias lb='ssh huyunting@relay00.baidu.com'
-alias lu='ssh linfan@10.211.55.6'
 
 alias create-tags='/usr/local/bin/ctags -R'
-alias gproxy='sudo /usr/local/goagent/local/proxy.sh'
-#open file
-alias -s html=vi
+
